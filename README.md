@@ -8,7 +8,7 @@ Following a natural disaster, there are usually large volumes of disaster relate
 
 # Files in repository: 
 1.	disaster_messages.csv: Messages dataset containing 4 columns including the message id, translated message, original message, and the type of message (e.g. news, social media). 
-2.	disaster_cateogires.csv: Categories dataset containing 2 columns including the message id and the category(ies) of the message
+2.	disaster_cateogires.csv: Categories dataset containing 2 columns including the message id and the category(ies) of the message.
 3.	DisasterResponse.db: SQLite database where the wrangled data is loaded to by the ETL script and from which the training and test data is loaded from in the ML pipeline script.
 4.	process.py: ETL script
 •	Loads the messages and categories datasets
