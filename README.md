@@ -1,10 +1,10 @@
 # Udacity_DSProject2_DisasterResponse
 
 # Description:
-Following a natural disaster, there are usually large volumes of disaster related communication. Disaster response organisations need to efficiently sift through and action the messages that matter whilst being overwhelmed with reacting to the given disaster. This project involves analysing disaster data in the form of messages to build a supervised machine learning model for an API that classifies disaster messages. FigureEight provided over 25k tagged messages a subset which were used to train and test the model. 
-1.	An ETL pipeline was built to prepare messages and category data load the data into a SQLite database.
-2.	A ML pipeline was then used to build a multi-output supervised learning model. 
-3.	A web app which extracts data from the database provides data visualisations and use the model to classify new messages. 
+Following a natural disaster there are usually large volumes of disaster-related communication. Disaster response organisations need to efficiently sift through and action the messages that matter whilst being overwhelmed with reacting to the given disaster. This project involves analysing disaster data in the form of messages to build a supervised machine learning model for an API that classifies disaster messages. FigureEight provided over 25k tagged disaster messages which were used to train or test the model. 
+1.	An ETL pipeline was built to prepare messages and category data, and then load the cleaned data into a SQLite database.
+2.	A ML pipeline was then used to build a multi-output supervised learning model using the data from the SQLite database.
+3.	A web app was built to extract data from the database, to display data visualisations and to use the model to classify new messages. 
 
 # Files in repository: 
 1.	disaster_messages.csv: Messages dataset containing 4 columns including the message id, translated message, original message, and the type of message (e.g. news, social media). 
@@ -26,6 +26,11 @@ Following a natural disaster, there are usually large volumes of disaster relate
 •	Creates visualisation to appear on the webapp
 •	Uses model to classify new messages
 
+# Note on running python scripts:
+1. process.py: To run this script, and three arguments need to be provided - two dataset csvs (disaster_messages.csv and disaster_categories.csv) and the database filepath (DisasterResponse.db).
+2. train.py: To run this script, the two arguments need to be given the filepath for the database (DisasterResponse.db) and a pickle file name (classifier_LSVC.pkl) to which the final trained model will be exported.
+3. run.py: No arguments need to be provided. 
+
 # Libraries used: 
 1.	pandas
 2.	nltk
@@ -40,5 +45,5 @@ Following a natural disaster, there are usually large volumes of disaster relate
 
 # Notes: 
 -	RandomForestClassifier and LinearSVC were both used and LinearSVC gave higher precision, recall and F1-scores.
--	Precision and recall were appropriate evaluation metrics since the dataset was quite imbalanced. Messages were labelled under multiple categories if appropriate but the the majority of the messages were labelled as (in addition to ‘related’), ‘aid-related,’ ‘weather-related’. Some categories (e.g ‘shop’) has as little as 27 corresponding messages which is likely insufficient for the model to be trained well. 
--	There were a total of 36 categories in the dataset, however there were no messages tagged as one of the categories so this category was dropped from the dataset. It was thought that removing it from the training (and test) data would have no impact on the model.  
+-	Precision and recall were appropriate evaluation metrics since the dataset was quite imbalanced. Messages were labelled under multiple categories if appropriate but the the majority of the messages were labelled as (in addition to ‘related’), ‘aid-related,’ ‘weather-related’. Some categories (e.g ‘shop’) has as little as 27 corresponding messages which was likely insufficient for the model to be trained well. 
+-	There were a total of 36 categories in the dataset, however there were no messages tagged as 'child-alone' so this category was dropped from the dataset. It was thought that removing it from the training (and test) data would have no impact on the model.  
