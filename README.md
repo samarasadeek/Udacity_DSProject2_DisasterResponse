@@ -18,7 +18,8 @@ Following a natural disaster there are usually large volumes of disaster-related
 5.	train.py: ML pipeline script
 •	Loads data from the SQLite database
 •	Splits data into training and test sets
-•	Text processing and machine learning pipeline
+•	Processes text and trains ML classifier
+•	Determine best parameters for ML classifier
 •	Produce classification report which include F1 score, precision and recall for each category on the test set 
 •	Exports the final model as a pickle file
 6.	run.py: Flask webapp script provided by Udacity:
