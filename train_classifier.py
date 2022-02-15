@@ -57,22 +57,31 @@ def tokenize(text):
 
 def build_model():
     '''
-    Description: Create text processing and machine learning pipeline that uses the custom tokenize function in the machine learning pipeline to vectorize and transform text. MultiOutputClassifier to support multi-target classification using LinearSVC classifier to enables predictions on 36 categories.
+    Description: Create text processing and machine learning pipeline that uses the custom tokenize function in the ML pipeline to vectorize
+    and transform text. MultiOutputClassifier to support multi-target classification using LinearSVC classifier to enables predictions on 36
+    categories. Use GridSearchCV to select the best parameters for the classifier.
         
-    Output: Text processing and machine learning pipeline 
+    Output: Text processing and ML pipeline 
     
     '''
     pipeline = Pipeline([
         ('vect', CountVectorizer(tokenizer=tokenize)),
         ('tfidf', TfidfTransformer()),
-        ('clf', MultiOutputClassifier(LinearSVC()))])
+        ('clf', MultiOutputClassifier(LinearSVC(max_iter=100000)))])
+
+    parameters = {
+    	'clf__estimator__C': [1,10],
+    	'clf__estimator__class_weight': ['balanced', None]}
+
+    cv = GridSearchCV(pipeline, param_grid=parameters)
     
-    return pipeline
+    return cv
 
 
 def evaluate_model(model, X_test, Y_test, category_names):
     '''
     Description: Use ML pipeline to predict labels of test features and produce classification report containing precision, recall, f1 score for each category.
+    Report best parameters tested using GridSearchCV.
     
     Input: ML pipeline, test and label features and category_names
     
@@ -81,6 +90,7 @@ def evaluate_model(model, X_test, Y_test, category_names):
     '''
     y_pred = model.predict(X_test)
     print(classification_report(Y_test, y_pred,target_names=category_names))
+    print("\nBest Parameters:", model.best_params_)
 
 def save_model(model, model_filepath):
     '''
@@ -121,7 +131,7 @@ def main():
         print('Please provide the filepath of the disaster messages database '\
               'as the first argument and the filepath of the pickle file to '\
               'save the model to as the second argument. \n\nExample: python '\
-              'train_classifier.py ../data/DisasterResponse.db classifier.pkl')
+              'train_classifier.py ../data/DisasterResponse.db classifier_LSVC.pkl')
 
 
 if __name__ == '__main__':
