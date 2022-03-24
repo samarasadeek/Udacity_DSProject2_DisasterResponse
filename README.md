@@ -28,8 +28,8 @@ Following a natural disaster there are usually large volumes of disaster-related
 •	Uses model to classify new messages
 
 # Note on running python scripts:
-1. process.py: To run this script, and three arguments need to be provided - two dataset csvs (disaster_messages.csv and disaster_categories.csv) and the database filepath (DisasterResponse.db).
-2. train.py: To run this script, the two arguments need to be given the filepath for the database (DisasterResponse.db) and a pickle file name (classifier_LSVC.pkl) to which the final trained model will be exported.
+1. process.py: To run this script, three arguments need to be provided - two dataset csvs (disaster_messages.csv and disaster_categories.csv) and the database filepath (DisasterResponse.db).
+2. train.py: To run this script, the two arguments need to be given - the filepath for the database (DisasterResponse.db) and a pickle file name (classifier_LSVC.pkl) to which the final trained model will be exported.
 3. run.py: No arguments need to be provided. 
 
 # Libraries used: 
